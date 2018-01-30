@@ -1,0 +1,14 @@
+<div class="container" style="display: grid;">
+    <div *ngFor="let eachRow of gameArray; let i = index">
+        <div *ngFor="let eachColumn of gameArray[i]; let j = index">
+            <div style="float: left">
+                <mine-button [hasBomb]=gameArray[i][j] [rowIndex]=i [colIndex]=j [isClickable]=gameArrayClickable[i][j] (endGameEvent)="endGame($event)"
+                    (expandAroundEvent)="expandAround($event)" [mineValue]=gameArrayMineValue[i][j]>
+                </mine-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="gameWon" style="text-align: center">You Won</div>
+<div *ngIf="gameLost" style="text-align: center">You Lost</div>

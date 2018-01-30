@@ -1,0 +1,40 @@
+.bd-footer{
+    padding: 2rem 0;
+    margin-top: 4rem;
+    background-color:#eceeef;
+}
+
+.card-block:hover {
+    background-color: #eceeef;  
+}
+
+.card-block a span{
+    position:absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0
+}
+
+.mine-button {
+    height: 2rem;
+    width: 2rem;
+    background-color: #5277b2 
+}
+
+.mine-button:disabled {
+    background-color: #c6cbd3
+}
+
+.sidenav {
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #7b7d80;
+    overflow-x: hidden;
+    padding-top: 20px;
+    opacity: 0.8
+}
