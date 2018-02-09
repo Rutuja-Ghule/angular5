@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { MineModel } from "../mine";
+import { MineModel } from "../models/mine";
 import { OnChanges } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
@@ -7,7 +7,7 @@ import { OnChanges } from "@angular/core/src/metadata/lifecycle_hooks";
     templateUrl: '../templates/mine.grid.component.html',
     styleUrls: ['../../app.component.css']
 })
-export class MineGridComponent implements OnInit, OnChanges {
+export class MineGridComponent implements OnChanges {
     @Input() gameWidth: number;
     @Input() gameHeight: number;
     @Input() gameBombs: number;
@@ -17,9 +17,6 @@ export class MineGridComponent implements OnInit, OnChanges {
     private gameLost: boolean = false;
     private gameWon: boolean = false;
 
-    ngOnInit() {
-        this.initGame();
-    }
 
     initGame() {
         this.gameArrayClickable = [];
@@ -51,7 +48,8 @@ export class MineGridComponent implements OnInit, OnChanges {
                 }
             }
         }
-        //console.log(this.gameArray);
+        //console.log(`Game array -  ${this.gameArray}`);
+        //console.log(this.gameArray)
     }
 
     initClickableArray() {

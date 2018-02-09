@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { MineModel } from "../mine";
+import { MineModel } from "../models/mine";
 
 @Component({
     selector: "mine-button",
