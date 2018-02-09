@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ChartsHomeComponent } from "./components/charts.component";
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ChartsHomeComponent } from './components/charts.component';
 
 @NgModule({
     declarations: [ChartsHomeComponent],
-    imports:[
+    imports: [
         RouterModule.forChild([
             {
                 path: 'charts-app',
@@ -12,8 +12,8 @@ import { ChartsHomeComponent } from "./components/charts.component";
             }
         ])
     ],
-    exports:[],
-    providers:[],
+    exports: [],
+    providers: [],
 })
 export class ChartsAppModule {
 

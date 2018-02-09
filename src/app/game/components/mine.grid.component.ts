@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { MineModel } from "../models/mine";
-import { OnChanges } from "@angular/core/src/metadata/lifecycle_hooks";
+import { Component, OnInit, Input } from '@angular/core';
+import { MineModel } from '../models/mine';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'mine-grid',
@@ -14,8 +14,8 @@ export class MineGridComponent implements OnChanges {
     private gameArray;
     private gameArrayClickable;
     private gameArrayMineValue;
-    private gameLost: boolean = false;
-    private gameWon: boolean = false;
+    private gameLost = false;
+    private gameWon = false;
 
 
     initGame() {
@@ -42,14 +42,14 @@ export class MineGridComponent implements OnChanges {
                 if (generateMines > 0) {
                     random_boolean = Math.random() >= 0.75;
                     this.gameArray[i][j] = random_boolean;
-                    if (random_boolean) generateMines--;
+                    if (random_boolean) { generateMines--; }
                 } else {
                     this.gameArray[i][j] = false;
                 }
             }
         }
-        //console.log(`Game array -  ${this.gameArray}`);
-        //console.log(this.gameArray)
+        // console.log(`Game array -  ${this.gameArray}`);
+        // console.log(this.gameArray)
     }
 
     initClickableArray() {
@@ -74,7 +74,7 @@ export class MineGridComponent implements OnChanges {
         console.log('End Game');
         this.showAllMines();
         this.gameLost = true;
-        //reset timer
+        // reset timer
         console.log(mine);
     }
 
@@ -87,7 +87,7 @@ export class MineGridComponent implements OnChanges {
                 this.gameArrayClickable[i][j] = true;
             }
         }
-        //console.log(this.gameArrayMineValue)
+        // console.log(this.gameArrayMineValue)
     }
 
     expandAround(mine: MineModel) {
@@ -98,10 +98,10 @@ export class MineGridComponent implements OnChanges {
     }
 
     checkForWin(): boolean {
-        let equalMatrix = true;
+        const equalMatrix = true;
         for (let i = 0; i < this.gameHeight; i++) {
             for (let j = 0; j < this.gameWidth; j++) {
-                if (!(this.gameArray[i][j] == !this.gameArrayClickable[i][j])) return false;
+                if (!(this.gameArray[i][j] === !this.gameArrayClickable[i][j])) { return false; }
             }
         }
         return equalMatrix;
@@ -109,72 +109,74 @@ export class MineGridComponent implements OnChanges {
 
     findRecursiveCount(i, j) {
         if (this.checkWithinGridBounds(i, j)) {
-            //console.log('Recursive call ' + i + ' ' + j);
+            // console.log('Recursive call ' + i + ' ' + j);
             this.gameArrayClickable[i][j] = true;
-            let count = this.findMinesCountAround(i, j);
-            this.gameArrayMineValue[i][j] = (count == 0) ? ' ' : count;
-            if (count == 0) {
+            const count = this.findMinesCountAround(i, j);
+            this.gameArrayMineValue[i][j] = (count === 0) ? ' ' : count;
+            if (count === 0) {
 
-                if (this.checkWithinGridBounds(i + 1, j - 1) && !this.gameArrayClickable[i + 1][j - 1])
+                if (this.checkWithinGridBounds(i + 1, j - 1) && !this.gameArrayClickable[i + 1][j - 1]) {
                     this.findRecursiveCount(i + 1, j - 1);
+                }
 
-                if (this.checkWithinGridBounds(i + 1, j) && !this.gameArrayClickable[i + 1][j])
+                if (this.checkWithinGridBounds(i + 1, j) && !this.gameArrayClickable[i + 1][j]) {
                     this.findRecursiveCount(i + 1, j);
+                }
 
-                if (this.checkWithinGridBounds(i + 1, j + 1) && !this.gameArrayClickable[i + 1][j + 1])
+                if (this.checkWithinGridBounds(i + 1, j + 1) && !this.gameArrayClickable[i + 1][j + 1]) {
                     this.findRecursiveCount(i + 1, j + 1);
+                }
 
-                if (this.checkWithinGridBounds(i, j - 1) && !this.gameArrayClickable[i][j - 1])
+                if (this.checkWithinGridBounds(i, j - 1) && !this.gameArrayClickable[i][j - 1]) {
                     this.findRecursiveCount(i, j - 1);
+                }
 
-                if (this.checkWithinGridBounds(i, j + 1) && !this.gameArrayClickable[i][j + 1])
+                if (this.checkWithinGridBounds(i, j + 1) && !this.gameArrayClickable[i][j + 1]) {
                     this.findRecursiveCount(i, j + 1);
+                }
 
-                if (this.checkWithinGridBounds(i - 1, j - 1) && !this.gameArrayClickable[i - 1][j - 1])
+                if (this.checkWithinGridBounds(i - 1, j - 1) && !this.gameArrayClickable[i - 1][j - 1]) {
                     this.findRecursiveCount(i - 1, j - 1);
+                }
 
-                if (this.checkWithinGridBounds(i - 1, j) && !this.gameArrayClickable[i - 1][j])
+                if (this.checkWithinGridBounds(i - 1, j) && !this.gameArrayClickable[i - 1][j]) {
                     this.findRecursiveCount(i - 1, j);
+                }
 
-                if (this.checkWithinGridBounds(i - 1, j + 1) && !this.gameArrayClickable[i - 1][j + 1])
+                if (this.checkWithinGridBounds(i - 1, j + 1) && !this.gameArrayClickable[i - 1][j + 1]) {
                     this.findRecursiveCount(i - 1, j + 1);
+                }
             }
         }
     }
 
     findMinesCountAround(i, j): number {
         let count = 0;
-        if (this.checkWithinGridBounds(i + 1, j - 1) && this.gameArray[i + 1][j - 1])
-            count++;
 
-        if (this.checkWithinGridBounds(i + 1, j) && this.gameArray[i + 1][j])
-            count++;
+        if (this.checkWithinGridBounds(i + 1, j - 1) && this.gameArray[i + 1][j - 1]) { count++; }
 
-        if (this.checkWithinGridBounds(i + 1, j + 1) && this.gameArray[i + 1][j + 1])
-            count++;
+        if (this.checkWithinGridBounds(i + 1, j) && this.gameArray[i + 1][j]) { count++; }
 
-        if (this.checkWithinGridBounds(i, j - 1) && this.gameArray[i][j - 1])
-            count++;
+        if (this.checkWithinGridBounds(i + 1, j + 1) && this.gameArray[i + 1][j + 1]) { count++; }
 
-        if (this.checkWithinGridBounds(i, j + 1) && this.gameArray[i][j + 1])
-            count++;
+        if (this.checkWithinGridBounds(i, j - 1) && this.gameArray[i][j - 1]) { count++; }
 
-        if (this.checkWithinGridBounds(i - 1, j - 1) && this.gameArray[i - 1][j - 1])
-            count++;
+        if (this.checkWithinGridBounds(i, j + 1) && this.gameArray[i][j + 1]) { count++; }
 
-        if (this.checkWithinGridBounds(i - 1, j) && this.gameArray[i - 1][j])
-            count++;
+        if (this.checkWithinGridBounds(i - 1, j - 1) && this.gameArray[i - 1][j - 1]) { count++; }
 
-        if (this.checkWithinGridBounds(i - 1, j + 1) && this.gameArray[i - 1][j + 1])
-            count++;
+        if (this.checkWithinGridBounds(i - 1, j) && this.gameArray[i - 1][j]) { count++; }
+
+        if (this.checkWithinGridBounds(i - 1, j + 1) && this.gameArray[i - 1][j + 1]) { count++; }
 
         return count;
     }
 
     checkWithinGridBounds(i: number, j: number): boolean {
-        if (i < this.gameHeight && i >= 0 && j < this.gameWidth && j >= 0)
+        if (i < this.gameHeight && i >= 0 && j < this.gameWidth && j >= 0) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }

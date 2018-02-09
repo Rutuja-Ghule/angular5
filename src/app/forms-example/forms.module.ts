@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsHomeComponent } from "./components/forms.component";
+import { FormsHomeComponent } from './components/forms.component';
 
 @NgModule({
     declarations: [FormsHomeComponent],
-    imports:[
+    imports: [
         RouterModule.forChild([
             {
                 path: 'forms-app',
@@ -12,8 +12,8 @@ import { FormsHomeComponent } from "./components/forms.component";
             }
         ])
     ],
-    exports:[],
-    providers:[],
+    exports: [],
+    providers: [],
 })
 export class FormsAppModule {
 

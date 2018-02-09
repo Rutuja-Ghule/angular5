@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { MineModel } from "../models/mine";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { MineModel } from '../models/mine';
 
 @Component({
-    selector: "mine-button",
-    templateUrl: "../templates/mine.component.html",
+    selector: 'mine-button',
+    templateUrl: '../templates/mine.component.html',
     styleUrls: ['../../app.component.css']
 })
 export class MineComponent {
@@ -18,7 +18,7 @@ export class MineComponent {
     onClick() {
         this.isClickable = true;
         if (this.hasBomb) {
-            //end the game, show all mines, reset timer
+            // end the game, show all mines, reset timer
             this.endGameEvent.emit(new MineModel(this.hasBomb, this.rowIndex, this.colIndex));
         } else {
             this.expandAroundEvent.emit(new MineModel(this.hasBomb, this.rowIndex, this.colIndex));

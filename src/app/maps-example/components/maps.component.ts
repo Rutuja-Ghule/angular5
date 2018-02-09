@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'map-home',
@@ -30,16 +30,16 @@ export class MapsHomeComponent implements OnInit {
         this.map.addControl(new mapboxgl.NavigationControl());
         this.map.on('load', (event) => {
             this.map.addSource('geojson-marker', {
-                "type": "geojson",
-                "data": {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-77.0323, 38.9131]
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-77.0323, 38.9131]
                     },
-                    "properties": {
-                        "title": "Mapbox DC",
-                        "marker-symbol": "monument"
+                    'properties': {
+                        'title': 'Mapbox DC',
+                        'marker-symbol': 'monument'
                     }
                 }
             });

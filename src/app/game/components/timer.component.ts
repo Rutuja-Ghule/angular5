@@ -1,4 +1,4 @@
-import { Component} from "@angular/core";
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -6,5 +6,5 @@ import { Location } from '@angular/common';
     templateUrl: '../templates/timer.component.html'
 })
 export class TimerComponent {
-    
+
 }
