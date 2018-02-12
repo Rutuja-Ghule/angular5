@@ -173,10 +173,6 @@ export class MineGridComponent implements OnChanges {
     }
 
     checkWithinGridBounds(i: number, j: number): boolean {
-        if (i < this.gameHeight && i >= 0 && j < this.gameWidth && j >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (i < this.gameHeight && i >= 0 && j < this.gameWidth && j >= 0) ? true : false;
     }
 }

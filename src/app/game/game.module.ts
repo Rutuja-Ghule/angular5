@@ -10,6 +10,11 @@ import { LevelSelectorComponent } from "./components/level.selector.component";
 import { TimerComponent } from "./components/timer.component";
 import { SimpleTimer } from 'ng2-simple-timer';
 
+// @Todo: Separate minesweeper game logic in service and component
+// @Todo: Implement timer functionality
+// @Todo: Resest button should not load whole page but only mine grid and timer
+// @Todo: When game ends disable all buttons and apply proper css
+
 @NgModule({
     declarations: [
         GamesHomeComponent,

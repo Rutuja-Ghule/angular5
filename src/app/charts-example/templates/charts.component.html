@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row" style="height: 350px">
+        <div class="col-sm-6" style="background: rgb(71, 230, 241)">
+            <h4>Progress</h4>
+            <circle-progress [title]="project1" [percent]="project1Completion" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'"></circle-progress>
+            <circle-progress [percent]="project2Completion" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'"></circle-progress>
+        </div>
+
+        <div class="col-sm-3" style="background: rgb(241, 71, 170)">
+            <task-project [projectName]="project1" (changePercentageEvent)="changePercentageHandler($event)"></task-project>
+        </div>
+
+        <div class="col-sm-3" style="background: rgb(71, 230, 241)">
+            <task-project [projectName]="project2" (changePercentageEvent)="changePercentageHandler($event)"></task-project>
+        </div>
+    </div>
+</div>

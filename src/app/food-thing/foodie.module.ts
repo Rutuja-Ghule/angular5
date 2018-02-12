@@ -10,6 +10,7 @@ import { PersistMealDataService } from './services/persist.data.service';
 
 // @Todo: Api call should made in routing module using resolve
 // @Todo: Handling error in api calls
+// @Todo: Showing error when internet is disconnected
 
 @NgModule({
     declarations: [

@@ -15,6 +15,10 @@ export class PersistMealDataService {
     constructor(private webService: MealApiService) {
         this.categories = [];
         this.cuisines = [];
+        this.webService.getRandomMeals().subscribe(data => {
+            this.meals = data;
+        });
+        this.resultString = 'Latest';
     }
 
     init() {

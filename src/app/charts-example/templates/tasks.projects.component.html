@@ -1,0 +1,11 @@
+<h4>{{projectName}}</h4>
+<br>
+<br>
+<ul style="list-style: none">
+
+    <li *ngFor="let task of objectKeys(projectTasks)">
+        <div style="margin-top: 0.75rem">
+            <input type="checkbox" name="status" value="{{task}}" (change)="taskStatusChange($event)"> {{task | titlecase}}
+        </div>
+    </li>
+</ul>
