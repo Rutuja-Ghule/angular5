@@ -33,7 +33,8 @@ import { PersistMealDataService } from './services/persist.data.service';
     ],
     exports: [],
     providers: [
-        MealApiService
+        MealApiService,
+        PersistMealDataService
     ],
 })
 export class FoodieAppModule {

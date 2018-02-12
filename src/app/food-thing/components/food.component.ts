@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MealApiService } from '../services/meal.api.service';
 import { Meal } from '../models/meal';
+import { PersistMealDataService } from '../services/persist.data.service';
 
 @Component({
     selector: 'foodie-home',
@@ -9,59 +10,40 @@ import { Meal } from '../models/meal';
     styleUrls: ['../templates/food.css']
 })
 export class FoodHomeComponent {
-    meals: Meal[]; // -->
-    categories: string[]; // -->
-    cuisines: string[]; // -->
-    currFilterOption = 'cuisine'; // -->
-    filterOptions: string[]; // -->
-    filterBy: string;  // --> 
-    resultString: string; // -->
 
     mealDetail: Meal;
 
-    constructor(private webService: MealApiService, private router: Router) {
-        this.categories = [];
-        this.webService.getAllCategories().subscribe(data => {
-            data.forEach(element => { this.categories.push(element.strCategory) });
-        });
-
-        this.cuisines = [];
-        this.webService.getAllCuisines().subscribe(data => {
-            data.forEach(element => { this.cuisines.push(element.strArea) });
-        });
-
-        this.meals = [];
-        this.filterOptions = this.cuisines;
+    constructor(private webService: MealApiService, private router: Router, private data: PersistMealDataService) {
+        data.init();
     }
 
     searchMealData(searchInput: string) {
-        // console.log(`Input string ${searchInput}`);
         this.webService.searchMealData(searchInput).subscribe(data => {
-            this.meals = data;
+            this.data.meals = data;
         });
-        this.resultString = `Search Result for ${searchInput}`;
+        this.data.resultString = `Search Result for ${searchInput}`;
     }
 
     changeFilterOption($event) {
-        this.currFilterOption = event.target.value;
-        if (this.currFilterOption === 'cuisine')
-            this.filterOptions = this.cuisines;
-        else if (this.currFilterOption === 'category')
-            this.filterOptions = this.categories;
+        this.data.currFilterOption = event.target.value;
+        if (this.data.currFilterOption === 'cuisine')
+            this.data.filterOptions = this.data.cuisines;
+        else if (this.data.currFilterOption === 'category')
+            this.data.filterOptions = this.data.categories;
     }
 
     filterMealData(filterBy: string) {
-        // console.log(`Filter option ${filterBy}`);
-        if (this.currFilterOption === 'cuisine') {
+        this.data.filterBy = filterBy;
+        if (this.data.currFilterOption === 'cuisine') {
             this.webService.getMealByCuisine(filterBy).subscribe(data => {
-                this.meals = data;
+                this.data.meals = data;
             });
-        } else if (this.currFilterOption === 'category') {
+        } else if (this.data.currFilterOption === 'category') {
             this.webService.getMealByCategory(filterBy).subscribe(data => {
-                this.meals = data;
+                this.data.meals = data;
             });
         }
-        this.resultString = `Filter Result for ${filterBy} ${this.currFilterOption}`;
+        this.data.resultString = `Filter Result for ${this.data.filterBy} ${this.data.currFilterOption}`;
     }
 
     navigateTo(idMeal: number) {
