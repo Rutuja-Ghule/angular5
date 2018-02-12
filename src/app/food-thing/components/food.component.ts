@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MealApiService } from '../services/meal.api.service';
 import { Meal } from '../models/meal';
 
 @Component({
     selector: 'foodie-home',
-    templateUrl: '../templates/food.component.html'
+    templateUrl: '../templates/food.component.html',
+    styleUrls: ['../templates/food.css']
 })
 export class FoodHomeComponent {
-    meals: Meal[];
-    categories: string[];
-    cuisines: string[];
-    currFilterOption = 'cuisine';
-    filterOptions: string[];
-    filterBy: string;
-    resultString: string;
+    meals: Meal[]; // -->
+    categories: string[]; // -->
+    cuisines: string[]; // -->
+    currFilterOption = 'cuisine'; // -->
+    filterOptions: string[]; // -->
+    filterBy: string;  // --> 
+    resultString: string; // -->
 
-    constructor(private webService: MealApiService) {
+    mealDetail: Meal;
+
+    constructor(private webService: MealApiService, private router: Router) {
         this.categories = [];
         this.webService.getAllCategories().subscribe(data => {
             data.forEach(element => { this.categories.push(element.strCategory) });
@@ -25,11 +29,6 @@ export class FoodHomeComponent {
         this.webService.getAllCuisines().subscribe(data => {
             data.forEach(element => { this.cuisines.push(element.strArea) });
         });
-
-        // let mealDetail: Meal;
-        // this.webService.getMealById(52772).subscribe(data => {
-        //     mealDetail = data;
-        // });
 
         this.meals = [];
         this.filterOptions = this.cuisines;
@@ -62,6 +61,10 @@ export class FoodHomeComponent {
                 this.meals = data;
             });
         }
-        this.resultString = `Filter Result for ${filterBy}`;
+        this.resultString = `Filter Result for ${filterBy} ${this.currFilterOption}`;
+    }
+
+    navigateTo(idMeal: number) {
+        this.router.navigate(['food-app/meal', idMeal]);
     }
 }

@@ -50,4 +50,8 @@ export class Meal {
     strSource: string;
     dateModified: string;
 
+    constructor() {
+        this.strMealThumb = '#';
+    }
+
 }

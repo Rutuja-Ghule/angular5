@@ -27,7 +27,6 @@ export class MealApiService {
             .map(response => response.json().meals);
     }
 
-    // @Todo - Handling error in api call
     getMealById(mealId: number): Observable<Meal> {
         return this._http.get(this.baseURL + 'lookup.php?i=' + mealId)
             .map(response => response.json().meals[0])

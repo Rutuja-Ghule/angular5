@@ -1,0 +1,4 @@
+.card:hover {
+    background-color: #eceeef;  
+    transform: scale(1.05);
+}

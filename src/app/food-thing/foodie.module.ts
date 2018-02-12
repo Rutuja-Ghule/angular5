@@ -5,10 +5,16 @@ import { MealApiService } from './services/meal.api.service';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { FoodDetailComponent } from './components/food.detail.component';
+import { PersistMealDataService } from './services/persist.data.service';
+
+// @Todo: Api call should made in routing module using resolve
+// @Todo: Handling error in api calls
 
 @NgModule({
     declarations: [
-        FoodHomeComponent,
+        FoodDetailComponent,
+        FoodHomeComponent
         ],
     imports: [
         BrowserModule,
@@ -18,11 +24,17 @@ import { FormsModule } from '@angular/forms';
             {
                 path: 'food-app',
                 component: FoodHomeComponent
+            },
+            {
+                path: 'food-app/meal/:id',
+                component: FoodDetailComponent
             }
         ])
     ],
     exports: [],
-    providers: [MealApiService],
+    providers: [
+        MealApiService
+    ],
 })
 export class FoodieAppModule {
 

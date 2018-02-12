@@ -1,17 +1,5 @@
-<!-- <li *ngFor="let meal of meals">
-    {{meal.strMeal}}
-</li> -->
-<!-- Categories
-<li *ngFor="let category of categories">
-    {{category}}
-</li>
-
-Cuisines
-<li *ngFor="let cuisine of cuisines">
-    {{cuisine}}
-</li> -->
-
 <div style="margin-left: 3rem; font-size: 20px">
+    <!-- <a [routerLink]="['meal', mealDetail.idMeal]">Click ME</a> -->
 
     <div style="margin-left: 1rem">
         <label>Search</label>
@@ -34,10 +22,13 @@ Cuisines
         <button (click)="filterMealData(filterBy.value)">Show</button>
     </div>
 
-    <div class="card-columns" style="margin-top: 70px">
+    <div style="margin-top: 40px">
         {{resultString}}
+    </div>
+
+    <div class="card-columns" style="margin-top: 20px">
         <div *ngFor="let meal of meals">
-            <div class="card" style="height: 370px; width: 300px; border-style: solid; margin-left: 1rem; margin-top: 2rem">
+            <div class="card" (click)="navigateTo(meal.idMeal)" style="height: 380px; width: 300px; border-style: solid; margin-left: 1rem; margin-top: 2rem">
                 <img class="card-img-top img-fluid" src="http://{{ meal.strMealThumb}}" alt="Card image cap">
                 <div class="card-block">
                     <p class="card-text">{{meal.strMeal}}</p>
