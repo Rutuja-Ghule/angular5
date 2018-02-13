@@ -50,4 +50,20 @@ export class FoodHomeComponent {
     navigateTo(idMeal: number) {
         this.router.navigate(['food-app/meal', idMeal]);
     }
+
+    // @Todo: Should we just make data members public????, research on best way to do it
+
+    getMeals(): Meal[] { return this.data.meals; }
+
+    getCategories(): string[] { return this.data.categories; }
+
+    getCuisines(): string[] { return this.data.cuisines; }
+
+    getCurrFilterOption(): string { return this.data.currFilterOption; }
+
+    getFilterOptions(): string[] { return this.data.filterOptions; }
+
+    getFilterBy(): string { return this.data.filterBy; }
+
+    getResultString(): string { return this.data.resultString; }
 }

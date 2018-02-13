@@ -37,21 +37,4 @@ export class PersistMealDataService {
         this.filterOptions = this.cuisines;
     }
 
-
-    // @Todo: Should we just make data members public????, research on best way to do it
-
-    public getMeals(): Meal[] { return this.meals; }
-
-    public getCategories(): string[] { return this.categories; }
-
-    public getCuisines(): string[] { return this.cuisines; }
-
-    public getCurrFilterOption(): string { return this.currFilterOption; }
-
-    public getFilterOptions(): string[] { return this.filterOptions; }
-
-    public getFilterBy(): string { return this.filterBy; }
-
-    public getResultString(): string { return this.resultString; }
-
 }

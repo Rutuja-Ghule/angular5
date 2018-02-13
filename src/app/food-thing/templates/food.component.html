@@ -9,13 +9,13 @@
     <div style="margin-left: 1rem; margin-top: 2rem">
         <label>Filter&nbsp;&nbsp;</label>
 
-        <select (change)="changeFilterOption($event)" value="{{data.getCurrFilterOption()}}">
+        <select (change)="changeFilterOption($event)" value="{{getCurrFilterOption()}}">
             <option value="cuisine">Cuisine</option>
             <option value="category">Category</option>
         </select>
 
-        <select #filterBy style="width: 150px" value="{{data.getFilterBy()}}">
-            <option *ngFor="let opt of data.getFilterOptions()" [value]="opt">
+        <select #filterBy style="width: 150px" value="{{getFilterBy()}}">
+            <option *ngFor="let opt of getFilterOptions()" [value]="opt">
                 {{opt}}
             </option>
         </select>
@@ -23,11 +23,11 @@
     </div>
 
     <div style="margin-top: 40px">
-        {{data.getResultString()}}
+        {{getResultString()}}
     </div>
 
     <div class="card-columns" style="margin-top: 20px">
-        <div *ngFor="let meal of data.getMeals()">
+        <div *ngFor="let meal of getMeals()">
             <div class="card" (click)="navigateTo(meal.idMeal)" style="height: 380px; width: 300px; border-style: solid; margin-left: 1rem; margin-top: 2rem">
                 <img class="card-img-top img-fluid" src="http://{{ meal.strMealThumb}}" alt="Card image cap">
                 <div class="card-block">
