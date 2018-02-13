@@ -25,7 +25,8 @@ export class FoodHomeComponent {
     }
 
     changeFilterOption($event) {
-        this.data.currFilterOption = event.target.value;
+        let htmlElement = <HTMLInputElement>(event.target);
+        this.data.currFilterOption = htmlElement.value;
         if (this.data.currFilterOption === 'cuisine')
             this.data.filterOptions = this.data.cuisines;
         else if (this.data.currFilterOption === 'category')

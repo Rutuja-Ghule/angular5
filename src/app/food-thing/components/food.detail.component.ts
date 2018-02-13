@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Meal } from '../models/meal';
 import { MealApiService } from '../services/meal.api.service';
-import { element } from 'protractor';
 
 @Component({
     selector: 'food-detail',

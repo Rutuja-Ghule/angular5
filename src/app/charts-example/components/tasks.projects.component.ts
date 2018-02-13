@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { element } from 'protractor';
 
 @Component({
     selector: 'task-project',
@@ -18,10 +17,11 @@ export class TasksProjectsComponent {
     }
 
     taskStatusChange($event) {
-        if (event.target.checked) {
-            this.projectTasks[event.target.value] = 'done';
+        let htmlElement = <HTMLInputElement>event.target;
+        if (htmlElement.checked) {
+            this.projectTasks[htmlElement.value] = 'done';
         } else {
-            this.projectTasks[event.target.value] = 'undone';
+            this.projectTasks[htmlElement.value] = 'undone';
         }
         let tasks = Object.keys(this.projectTasks);
         let completedTasks = 0;
