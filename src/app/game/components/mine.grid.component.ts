@@ -11,11 +11,11 @@ export class MineGridComponent implements OnChanges {
     @Input() gameWidth: number;
     @Input() gameHeight: number;
     @Input() gameBombs: number;
-    private gameArray;
-    private gameArrayClickable;
-    private gameArrayMineValue;
-    private gameLost = false;
-    private gameWon = false;
+    gameArray;
+    gameArrayClickable;
+    gameArrayMineValue;
+    gameLost = false;
+    gameWon = false;
 
 
     initGame() {

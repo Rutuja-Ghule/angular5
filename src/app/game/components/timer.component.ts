@@ -6,5 +6,5 @@ import { Location } from '@angular/common';
     templateUrl: '../templates/timer.component.html'
 })
 export class TimerComponent {
-
+    ticks = '00:00';
 }
