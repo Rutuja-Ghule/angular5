@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   mapbox: {
-    accessToken: 'i-am-not-pasting-my-access-token-here'
+    accessToken: 'mapbox access token'
   }
 };
