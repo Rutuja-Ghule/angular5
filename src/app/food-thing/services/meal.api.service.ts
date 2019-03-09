@@ -8,7 +8,7 @@ import { Meal } from '../models/meal';
 @Injectable()
 export class MealApiService {
 
-    baseURL = 'http://www.themealdb.com/api/json/v1/1/';
+    baseURL = 'https://www.themealdb.com/api/json/v1/1/';
 
     constructor(private _http: Http) { }
 
