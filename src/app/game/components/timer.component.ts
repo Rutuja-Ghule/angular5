@@ -7,7 +7,6 @@ import { TimerService } from '../services/timer.service';
 })
 export class TimerComponent {
 
-    constructor(private timerService: TimerService) {
-
+    constructor(public timerService: TimerService) {
     }
 }
