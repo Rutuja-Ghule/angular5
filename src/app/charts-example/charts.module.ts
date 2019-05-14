@@ -39,7 +39,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
         ])
     ],
     exports: [],
-    providers: [DataService],
+    providers: [],
 })
 export class ChartsAppModule {
 
