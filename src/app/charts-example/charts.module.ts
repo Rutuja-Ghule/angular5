@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ChartsHomeComponent } from './components/charts.component';
-import { DataService } from './services/data.service';
 import { TasksProjectsComponent } from './components/tasks.projects.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';

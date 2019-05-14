@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { TimerService } from '../services/timer.service';
 
 @Component({
     selector: 'timer',
     templateUrl: '../templates/timer.component.html'
 })
 export class TimerComponent {
-    ticks = '00:00';
+
+    constructor(private timerService: TimerService) {
+
+    }
 }

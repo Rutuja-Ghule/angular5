@@ -8,7 +8,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ResetComponent } from "./components/reset.component";
 import { LevelSelectorComponent } from "./components/level.selector.component";
 import { TimerComponent } from "./components/timer.component";
-import { SimpleTimer } from 'ng2-simple-timer';
+import { TimerService } from "./services/timer.service";
+import { MinutesSecondsTimePipe } from "./pipes/minutes-seconds-time.pipe";
 
 // @Todo: Separate minesweeper game logic in service and component
 // @Todo: Implement timer functionality
@@ -22,7 +23,8 @@ import { SimpleTimer } from 'ng2-simple-timer';
         LevelSelectorComponent,
         TimerComponent,
         MineGridComponent,
-        MineComponent
+        MineComponent,
+        MinutesSecondsTimePipe
     ],
     imports: [
         FormsModule,
@@ -35,7 +37,7 @@ import { SimpleTimer } from 'ng2-simple-timer';
         ])
     ],
     exports: [],
-    providers: [SimpleTimer],
+    providers: [TimerService],
 })
 export class GamesAppModule {
 

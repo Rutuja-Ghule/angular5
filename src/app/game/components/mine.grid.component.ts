@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MineModel } from '../models/mine';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { TimerService } from '../services/timer.service';
 
 @Component({
     selector: 'mine-grid',
@@ -11,12 +12,15 @@ export class MineGridComponent implements OnChanges {
     @Input() gameWidth: number;
     @Input() gameHeight: number;
     @Input() gameBombs: number;
+    @Input() startTicking: boolean;
     gameArray;
     gameArrayClickable;
     gameArrayMineValue;
     gameLost = false;
     gameWon = false;
 
+    constructor(private timerService: TimerService) {
+    }
 
     initGame() {
         this.gameArrayClickable = [];
@@ -71,11 +75,12 @@ export class MineGridComponent implements OnChanges {
     }
 
     endGame(mine: MineModel) {
-        console.log('End Game');
         this.showAllMines();
         this.gameLost = true;
-        // reset timer
-        console.log(mine);
+        if (this.gameLost) {
+            this.timerService.stopTimer();
+            console.log('Timer stopped');
+        }
     }
 
     showAllMines() {
@@ -91,10 +96,20 @@ export class MineGridComponent implements OnChanges {
     }
 
     expandAround(mine: MineModel) {
+// console.log(this.startTicking)
+        if (!this.startTicking) {
+            this.startTicking = true;
+            this.timerService.startTimer();
+            console.log('Timer started');
+        }
         this.findRecursiveCount(mine.rowIndex, mine.colIndex);
-        console.log(this.gameArray);
-        console.log(this.gameArrayClickable);
+        // console.log(this.gameArray);
+        // console.log(this.gameArrayClickable);
         this.gameWon = this.checkForWin();
+        if (this.gameWon) {
+            this.timerService.stopTimer();
+            console.log('Timer stopped');
+        }
     }
 
     checkForWin(): boolean {
