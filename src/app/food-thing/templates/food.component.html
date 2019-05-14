@@ -1,34 +1,43 @@
-<div style="margin-left: 3rem; font-size: 20px">
-    <!-- <a [routerLink]="['meal', mealDetail.idMeal]">Click ME</a> -->
+<div style="margin-left: 3rem; margin-top: 2rem; font-size: 20px">
+    <div class="container">
 
-    <div style="margin-left: 1rem">
-        <label>Search</label>
-        <input #searchInput type="text" size="35" (keyup.enter)="searchMealData(searchInput.value)">
-    </div>
+        <h4 class="text-center" style="margin-bottom: 2rem">Search and browse delicious recipes!</h4>
 
-    <div style="margin-left: 1rem; margin-top: 2rem">
-        <label>Filter&nbsp;&nbsp;</label>
+        <div class="row" style="margin-bottom: 1rem; margin-left: 18rem">
+            <div class="col-md-8 form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input #searchInput type="text" size="35" class="form-control" placeholder="Search"
+                    (keyup.enter)="searchMealData(searchInput.value)">
+            </div>
+        </div>
 
-        <select (change)="changeFilterOption($event)" value="{{getCurrFilterOption()}}">
-            <option value="cuisine">Cuisine</option>
-            <option value="category">Category</option>
-        </select>
+        <div class="row form-group" style="margin-bottom: 1.5rem;margin-left: 18rem">
+            <div class="col-md-1"><label>Filter:</label></div>
+            <div class="col-md-3">
+                <select class="form-control" (change)="changeFilterOption($event)" value="{{getCurrFilterOption()}}">
+                    <option value="cuisine">Cuisine</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select #filterBy class="form-control" style="width: 150px" value="{{getFilterBy()}}">
+                    <option *ngFor="let opt of getFilterOptions()" [value]="opt">
+                        {{opt}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" (click)="filterMealData(filterBy.value)">Show</button>
+            </div>
+        </div>
 
-        <select #filterBy style="width: 150px" value="{{getFilterBy()}}">
-            <option *ngFor="let opt of getFilterOptions()" [value]="opt">
-                {{opt}}
-            </option>
-        </select>
-        <button (click)="filterMealData(filterBy.value)">Show</button>
-    </div>
-
-    <div style="margin-top: 40px">
-        {{getResultString()}}
+        <div class="text-center"> {{getResultString()}} </div>
     </div>
 
     <div class="card-columns" style="margin-top: 20px">
         <div *ngFor="let meal of getMeals()">
-            <div class="card" (click)="navigateTo(meal.idMeal)" style="height: 380px; width: 300px; border-style: solid; margin-left: 1rem; margin-top: 2rem">
+            <div class="card" (click)="navigateTo(meal.idMeal)"
+                style="height: 350px; width: 270px; border-style: solid; margin-left: 1rem; margin-top: 1.5rem">
                 <img class="card-img-top img-fluid" src="{{ meal.strMealThumb}}" alt="Card image cap">
                 <div class="card-block">
                     <p class="card-text">{{meal.strMeal}}</p>

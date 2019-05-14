@@ -18,7 +18,7 @@ export class PersistMealDataService {
         this.webService.getRandomMeals().subscribe(data => {
             this.meals = data;
         });
-        this.resultString = 'Latest';
+        this.resultString = 'Latest recipes';
     }
 
     init() {

@@ -18,22 +18,25 @@ export class FoodHomeComponent {
     }
 
     searchMealData(searchInput: string) {
+        this.data.meals = [];
         this.webService.searchMealData(searchInput).subscribe(data => {
             this.data.meals = data;
+            this.data.resultString = this.data.meals ? `${searchInput} recipes` : `Sorry no results for ${searchInput}`;
         });
-        this.data.resultString = `Search Result for ${searchInput}`;
     }
 
     changeFilterOption($event) {
-        let htmlElement = <HTMLInputElement>(event.target);
+        const htmlElement = <HTMLInputElement>(event.target);
         this.data.currFilterOption = htmlElement.value;
-        if (this.data.currFilterOption === 'cuisine')
+        if (this.data.currFilterOption === 'cuisine') {
             this.data.filterOptions = this.data.cuisines;
-        else if (this.data.currFilterOption === 'category')
+        } else if (this.data.currFilterOption === 'category') {
             this.data.filterOptions = this.data.categories;
+        }
     }
 
     filterMealData(filterBy: string) {
+        this.data.meals = [];
         this.data.filterBy = filterBy;
         if (this.data.currFilterOption === 'cuisine') {
             this.webService.getMealByCuisine(filterBy).subscribe(data => {
@@ -44,7 +47,7 @@ export class FoodHomeComponent {
                 this.data.meals = data;
             });
         }
-        this.data.resultString = `Filter Result for ${this.data.filterBy} ${this.data.currFilterOption}`;
+        this.data.resultString = `${this.data.filterBy} ${this.data.currFilterOption} recipes`;
     }
 
     navigateTo(idMeal: number) {
